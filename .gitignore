@@ -1,0 +1,8 @@
+.vscode
+*.egg*
+*.pyc
+.DS_Store
+.idea/
+
+.data/
+.raw_data/

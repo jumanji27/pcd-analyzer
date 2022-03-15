@@ -1,0 +1,4 @@
+numpy==1.21.4
+pandas==1.4.0
+open3d==0.14.1
+pyntcloud==0.1.6
