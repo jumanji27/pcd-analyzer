@@ -1,0 +1,21 @@
+visualize:
+  surfaces: true
+  resultant_point: true
+  initial_aligment: true
+  final_aligment: true
+
+plane_segmentation_threshold: 5
+pcd_standart: './data/cloud.ply'
+pcd_sample: './data/cloud-y-30.ply'
+min_plane_size: 1000
+horizontal_plane_coefficient: 3
+vertical_plane_width: 2  # production 1
+side_planes_coefficient: [10, 30]
+
+preprocess:
+  input_path: './raw_data/test/y-30'
+  ouput_file: './data/cloud-z+30.ply'
+  downsampling_voxel_size: 5  # production 1-2
+
+alignment_voxel_size: 20
+angles_format: 'zyx'

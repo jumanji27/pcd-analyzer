@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  pcd-analyzer:
+    build:
+      context: ./src
+      dockerfile: ../system/Dockerfile
+    container_name: pcd-analyzer
+    volumes:
+      - ./data:/pcd-analyzer/data
+      - ./raw_data:/pcd-analyzer/raw_data
+      - ./system/config.yml:/pcd-analyzer/system/config.yml
