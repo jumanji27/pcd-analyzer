@@ -8,7 +8,7 @@ import open3d as o3d
 from scipy.spatial.transform import Rotation
 import yaml
 
-from aligner import Aligner
+from src.aligner import Aligner
 
 
 class PCDAnalyzer:
@@ -30,10 +30,12 @@ class PCDAnalyzer:
         cloud = PyntCloud(pd.DataFrame(
             data=frame, columns=['x', 'y', 'z']
         ))
-        cloud.to_file(self._config['preprocess']['ouput_file'])
-        pcd = self.read(self._config['preprocess']['ouput_file'])
+        output_file = self._config['preprocess']['ouput_file']
+        cloud.to_file(output_file)
+        pcd = self.read(output_file)
         pcd = pcd.voxel_down_sample(voxel_size=self._config['preprocess']['downsampling_voxel_size'])
-        o3d.io.write_point_cloud(self._config['preprocess']['ouput_file'], pcd)
+        o3d.io.write_point_cloud(output_file, pcd)
+        print(f'Saved to {output_file}')
 
     def read(self, file):
         return o3d.io.read_point_cloud(file)
@@ -217,15 +219,12 @@ class PCDAnalyzer:
         pcds[1].paint_uniform_color([1, 0, 0])
         o3d.visualization.draw_geometries(pcds)
 
-    def __call__(self):
+    @staticmethod
+    def read_config():
+        with open('system/config.yml', 'r') as file:
+            return yaml.load(file, Loader=yaml.FullLoader)
+
+    def find_xyzabc(self):
         self.process(self.filter_table(self.read(
             self._config['pcd_sample'],
         )))
-
-
-with open('system/config.yml', 'r') as file:
-    config = yaml.load(file, Loader=yaml.FullLoader)
-
-pcd_analyzer = PCDAnalyzer(_config=config)
-# pcd_analyzer.preprocess()
-pcd_analyzer()

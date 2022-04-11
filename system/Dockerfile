@@ -11,6 +11,7 @@ RUN apt-get install ffmpeg libsm6 libxext6 -y
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY . .
+COPY src src
+COPY *.py .
 
-CMD python app.py
+CMD python find_xyzabc.py

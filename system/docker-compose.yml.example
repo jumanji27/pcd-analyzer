@@ -3,8 +3,9 @@ version: "3"
 services:
   pcd-analyzer:
     build:
-      context: ./src
-      dockerfile: ../system/Dockerfile
+      context: ./
+      dockerfile: ./system/Dockerfile
+    command: ["python", "find_xyzabc.py"]
     container_name: pcd-analyzer
     volumes:
       - ./data:/pcd-analyzer/data
