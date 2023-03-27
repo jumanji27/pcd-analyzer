@@ -1,4 +1,4 @@
-from src.app import PCDAnalyzer
+from modules.app import PCDAnalyzer
 
 
 pcd_analyzer = PCDAnalyzer(_config=PCDAnalyzer.read_config())

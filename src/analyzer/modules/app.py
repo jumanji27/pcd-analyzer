@@ -8,7 +8,7 @@ import open3d as o3d
 from scipy.spatial.transform import Rotation
 import yaml
 
-from src.aligner import Aligner
+from modules.aligner import Aligner
 
 
 class PCDAnalyzer:

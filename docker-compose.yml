@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  analyzer:
+    build:
+      context: ./src/analyzer
+      dockerfile: system/Dockerfile
+    container_name: analyzer
+    command: ['python', 'find_xyzabc.py']
+    volumes:
+      - ./data:/analyzer/data
+      - ./raw_data:/analyzer/raw_data
+      - ./configs/analyzer.yml:/src/system/config.yml
